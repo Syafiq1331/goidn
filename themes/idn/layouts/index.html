@@ -1,0 +1,34 @@
+{{ define "main" }}
+<main class="mx-auto h-screen bg-slate-700 text-white">
+  <section class="container mx-auto">
+    <div>
+      <h2 class="text-xl">List blog</h2>
+
+      <ul class="list-disc list-inside">
+        <!-- Looping semua isi folder -->
+        {{ range .Site.RegularPages }}
+        <li>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <span>Dibuat tanggal {{ .Date.Format "2006-01-02" }}</span>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+
+    <div class="my-4">
+      <h2 class="text-xl">List post</h2>
+
+      <ul class="list-disc list-inside">
+        <!-- Looping berdasarkan folder dan isi foldernya -->
+        {{ range where .Site.RegularPages "Section" "posts" }}
+        <li>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <span>Dibuat tanggal {{ .Date.Format "2006-01-02" }}</span>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+
+  </section>
+</main>
+{{ end }}
